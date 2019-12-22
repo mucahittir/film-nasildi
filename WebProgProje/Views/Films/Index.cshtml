@@ -1,0 +1,72 @@
+﻿@model WebProgProje.Models.ViewModels.FilmViewModel
+
+@{
+    ViewData["Title"] = "Liste";
+}
+
+<h1>Film Listesi</h1>
+
+
+    @if (User.IsInRole("Admin")) {<p><a asp-action="Create">Yeni Yazı Ekle</a></p>}
+
+<form asp-controller="Films" asp-action="Index" method="get">
+    <p>
+
+        <select asp-for="FilmEtiketi" asp-items="Model.Etiketler">
+            <option value="">Tümü</option>
+        </select>
+
+        Başlık: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filtrele" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Filmler[0].Baslik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model =>model.Filmler[0].YaziGiris)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model =>model.Filmler[0].Etiket)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Filmler[0].Yazi)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Filmler) {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Baslik)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YaziGiris)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Etiket)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Yazi)
+            </td>
+            
+            
+            <td>
+                @if (User.IsInRole("Admin"))
+                {<a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a>}  
+                &nbsp;&nbsp;
+                @if (User.IsInRole("Admin"))
+                {<a asp-action="Delete" asp-route-id="@item.Id">Sil</a>}
+
+            </td>
+            
+                
+        </tr>
+}
+    </tbody>
+</table>

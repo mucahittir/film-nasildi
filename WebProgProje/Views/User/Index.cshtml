@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WebProgProje.Models.Authentication.AppUser>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Liste</h1>
+
+<p>
+    <a asp-action="SignUp">Yeni kullanıcı kaydı</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a asp-action="RoleAssign" asp-controller="Role" asp-route-id="@item.Id">Rol Ata</a>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detaylar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

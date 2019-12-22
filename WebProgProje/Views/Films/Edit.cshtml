@@ -1,0 +1,51 @@
+﻿@model WebProgProje.Models.FilmModel.Film
+
+@{
+    ViewData["Title"] = "Yazı Düzenle";
+}
+
+<h1>Düzenle</h1>
+
+<h4>Film</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Baslik" class="control-label"></label>
+                <input asp-for="Baslik" class="form-control" />
+                <span asp-validation-for="Baslik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="YaziGiris" class="control-label"></label>
+                <input asp-for="YaziGiris" class="form-control" />
+                <span asp-validation-for="YaziGiris" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Etiket" class="control-label"></label>
+                <input asp-for="Etiket" class="form-control" />
+                <span asp-validation-for="Etiket" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ResimUrl" class="control-label"></label>
+                <input asp-for="ResimUrl" class="form-control" />
+                <span asp-validation-for="ResimUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Yazi" class="control-label"></label>
+                <input asp-for="Yazi" class="form-control" />
+                <span asp-validation-for="Yazi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Listeye geri dön</a>
+</div>
+
